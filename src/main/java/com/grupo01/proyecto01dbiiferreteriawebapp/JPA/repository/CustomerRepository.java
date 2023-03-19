@@ -11,4 +11,8 @@ import java.util.List;
 public interface CustomerRepository extends CrudRepository<CustomerEntity, Long> {
     List<CustomerEntity> findByLastName(String lastName);
     CustomerEntity findById(long id);
+    List<CustomerEntity> findByName(String name);
+    CustomerEntity findByCedula(long cedula);
+    List<CustomerEntity> findByNameAndLastName(String name, String lastName);
+
 }
