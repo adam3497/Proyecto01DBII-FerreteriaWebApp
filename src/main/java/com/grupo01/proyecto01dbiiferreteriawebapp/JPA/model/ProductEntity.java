@@ -2,6 +2,7 @@ package com.grupo01.proyecto01dbiiferreteriawebapp.JPA.model;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -10,17 +11,17 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "producto")
-public class ProductEntity {
+public class ProductEntity implements Serializable {
 
     @Id
-    @Column(name = "id_producto")
+    @Column(name = "id_producto", unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "nombre_producto")
+    @Column(name = "nombre_producto", nullable = false)
     private String name;
 
-    @Column(name = "precio_producto")
+    @Column(name = "precio_producto", nullable = false)
     private long price;
 
     @Column(name = "vencimiento")
@@ -30,7 +31,7 @@ public class ProductEntity {
     @Column(name = "cantidad")
     private long amount;
 
-    @Column(name = "id_categoria")
+    @Column(name = "id_categoria", nullable = false)
     private long categoryID;
 
     public ProductEntity() {

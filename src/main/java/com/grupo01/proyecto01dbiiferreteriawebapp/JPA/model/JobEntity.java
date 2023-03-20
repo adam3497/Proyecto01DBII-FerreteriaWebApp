@@ -11,14 +11,14 @@ import jakarta.persistence.*;
 public class JobEntity {
 
     @Id
-    @Column(name = "id_puesto")
+    @Column(name = "id_puesto", nullable = false, unique = true)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "nombre_puesto")
+    @Column(name = "nombre_puesto", nullable = false)
     private String name;
 
-    @Column(name = "descripcion")
+    @Column(name = "descripcion", nullable = false)
     private String description;
 
     public JobEntity() {

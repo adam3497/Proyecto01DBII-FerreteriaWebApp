@@ -11,20 +11,20 @@ import jakarta.persistence.*;
 public class BillDetailsEntity {
 
     @Id
-    @Column(name = "id_detalle")
+    @Column(name = "id_detalle", unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "precio")
+    @Column(name = "precio", nullable = false)
     private long price;
 
-    @Column(name = "cantidad")
+    @Column(name = "cantidad", nullable = false)
     private long amount;
 
-    @Column(name = "id_producto")
+    @Column(name = "id_producto", nullable = false)
     private long productID;
 
-    @Column(name = "id_factura")
+    @Column(name = "id_factura", nullable = false)
     private long billID;
 
     public BillDetailsEntity() {}

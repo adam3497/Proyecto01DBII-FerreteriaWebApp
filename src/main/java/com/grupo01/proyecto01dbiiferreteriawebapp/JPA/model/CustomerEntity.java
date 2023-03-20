@@ -10,21 +10,21 @@ import java.io.Serializable;
 @Table(name = "cliente")
 public class CustomerEntity implements Serializable {
     @Id
-    @Column(name = "id_cliente")
+    @Column(name = "id_cliente", unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "cedula_cliente")
+    @Column(name = "cedula_cliente", unique = true, nullable = false)
     private long cedula;
-    @Column(name = "nombre_cliente")
+    @Column(name = "nombre_cliente", nullable = false)
     private String name;
-    @Column(name = "apellidos_cliente")
+    @Column(name = "apellidos_cliente", nullable = false)
     private String lastName;
-    @Column(name = "numero_telefono")
+    @Column(name = "numero_telefono", nullable = false)
     private long phoneNumber;
-    @Column(name = "direccion")
+    @Column(name = "direccion", nullable = false)
     private String address;
-    @Column(name = "correo_electronico")
+    @Column(name = "correo_electronico", nullable = false)
     private String email;
 
     protected CustomerEntity() {

@@ -2,35 +2,37 @@ package com.grupo01.proyecto01dbiiferreteriawebapp.JPA.model;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 /**
  * EmployeeEntity is a model type of class intended to be populated by the data recovered from the
  *  * empleado table
  */
 @Entity
 @Table(name = "empleado")
-public class EmployeeEntity {
+public class EmployeeEntity implements Serializable {
 
     @Id
-    @Column(name = "id_empleado")
+    @Column(name = "id_empleado", unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "cedula_empleado")
+    @Column(name = "cedula_empleado", unique = true, nullable = false)
     private long cedula;
 
-    @Column(name = "nombre_empleado")
+    @Column(name = "nombre_empleado", nullable = false)
     private String name;
 
-    @Column(name = "apellidos_empleado")
+    @Column(name = "apellidos_empleado", nullable = false)
     private String lastName;
 
-    @Column(name = "numero_telefono")
+    @Column(name = "numero_telefono", nullable = false)
     private long phoneNumber;
 
-    @Column(name = "id_puesto")
+    @Column(name = "id_puesto", nullable = false)
     private long jobID;
 
-    @Column(name = "correo_electronico")
+    @Column(name = "correo_electronico", nullable = false, unique = true)
     private String email;
 
     protected EmployeeEntity() {

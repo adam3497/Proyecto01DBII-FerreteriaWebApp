@@ -13,18 +13,18 @@ import java.util.Date;
 public class BillEntity {
 
     @Id
-    @Column(name = "id_factura")
+    @Column(name = "id_factura", unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "id_cliente")
+    @Column(name = "id_cliente", nullable = false)
     private long customerID;
 
-    @Column(name = "fecha")
+    @Column(name = "fecha", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date billDate;
 
-    @Column(name = "id_empleado")
+    @Column(name = "id_empleado", nullable = false)
     private long employeeID;
 
     public BillEntity() {}

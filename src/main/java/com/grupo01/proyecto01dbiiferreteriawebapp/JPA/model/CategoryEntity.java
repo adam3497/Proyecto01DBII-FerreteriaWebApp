@@ -11,11 +11,11 @@ import jakarta.persistence.*;
 public class CategoryEntity {
 
     @Id
-    @Column(name = "id_categoria")
+    @Column(name = "id_categoria", nullable = false, unique = true)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "nombre_categoria")
+    @Column(name = "nombre_categoria", nullable = false)
     private String name;
 
     public CategoryEntity() {
