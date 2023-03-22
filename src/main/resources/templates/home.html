@@ -3,9 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <title>Inicio | Base de Datos Ferretería</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-  <h1>Bienvenido!</h1>
-  <p>Click <a th:href="@{/profile}">aquí</a> para ver un saludo.</p>
+    <div th:replace="_fragments/header"></div>
+    <br/>
+    <br/>
+    <br/>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="text-center">Bienvenido, ¿qué desea realizar?</h3>
+                    </div>
+                    <div class="card-body">
+                        <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
+                            <div class="container-fluid">
+                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+                                    aria-expanded="false" aria-label="Toggle Navigation">
+                                    <span class="nav-toggler-icon"></span>
+                                </button>
+                                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                                    <ul class="navbar-nav">
+                                        <!-- Dropdown for the Add crud option -->
+                                        <li class="nav-item dropdown">
+                                            <a href="#" class="nav-link dropdown-toggle" role="button"
+                                               data-bs-toggle="dropdown" aria-expanded="false">
+                                                Agregar
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#" class="dropdown-item">Agregar Empleado</a></li>
+                                                <li><a href="#" class="dropdown-item">Agregar Puesto</a></li>
+                                                <li><a href="#" class="dropdown-item">Agregar Producto</a></li>
+                                                <li><a href="#" class="dropdown-item">Agregar Categoría</a></li>
+                                                <li><a href="#" class="dropdown-item">Agregar Cliente</a></li>
+                                            </ul>
+                                        </li>
+
+                                        <!-- Dropdown for the Edit crud option -->
+                                        <li class="nav-item dropdown">
+                                            <a href="#" class="nav-link dropdown-toggle" role="button"
+                                               data-bs-toggle="dropdown" aria-expanded="false">
+                                                Editar
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#" class="dropdown-item">Editar Empleado</a></li>
+                                                <li><a href="#" class="dropdown-item">Editar Puesto</a></li>
+                                                <li><a href="#" class="dropdown-item">Editar Producto</a></li>
+                                                <li><a href="#" class="dropdown-item">Editar Categoría</a></li>
+                                                <li><a href="#" class="dropdown-item">Editar Cliente</a></li>
+                                            </ul>
+                                        </li>
+
+                                        <!-- Dropdown for the Delete crud option -->
+                                        <li class="nav-item dropdown">
+                                            <a href="#" class="nav-link dropdown-toggle" role="button"
+                                               data-bs-toggle="dropdown" aria-expanded="false">
+                                                Eliminar
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#" class="dropdown-item">Eliminar Empleado</a></li>
+                                                <li><a href="#" class="dropdown-item">Eliminar Puesto</a></li>
+                                                <li><a href="#" class="dropdown-item">Eliminar Producto</a></li>
+                                                <li><a href="#" class="dropdown-item">Eliminar Categoría</a></li>
+                                                <li><a href="#" class="dropdown-item">Eliminar Cliente</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">Buscar</a> 
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

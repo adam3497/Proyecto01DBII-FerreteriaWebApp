@@ -3,9 +3,7 @@ package com.grupo01.proyecto01dbiiferreteriawebapp.JPA.model;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "users_webapp")
@@ -33,7 +31,7 @@ public class UserEntity implements Serializable {
             inverseJoinColumns = {
                 @JoinColumn(name = "role_id", referencedColumnName = "user_id")
             })
-    private Collection<RoleEntity> roles;
+    private List<RoleEntity> roles;
 
     public UserEntity() {}
 
@@ -81,11 +79,11 @@ public class UserEntity implements Serializable {
         this.userPassword = userPassword;
     }
 
-    public Collection<RoleEntity> getRoles() {
+    public List<RoleEntity> getRoles() {
         return roles;
     }
 
-    public void setRoles(Collection<RoleEntity> roles) {
+    public void setRoles(List<RoleEntity> roles) {
         this.roles = roles;
     }
 }

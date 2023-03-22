@@ -3,9 +3,7 @@ package com.grupo01.proyecto01dbiiferreteriawebapp.JPA.model;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "roles_webapp")
@@ -20,7 +18,7 @@ public class RoleEntity implements Serializable {
     private String roleName;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "roles_webapp")
-    private Collection<UserEntity> users;
+    private List<UserEntity> users;
 
     public RoleEntity() {
     }
@@ -51,11 +49,11 @@ public class RoleEntity implements Serializable {
         this.roleName = roleName;
     }
 
-    public Collection<UserEntity> getUsers() {
+    public List<UserEntity> getUsers() {
         return users;
     }
 
-    public void setUsers(Collection<UserEntity> users) {
+    public void setUsers(List<UserEntity> users) {
         this.users = users;
     }
 }
