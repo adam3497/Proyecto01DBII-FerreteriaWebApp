@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="_fragments/pageforms_fragment :: head (~{:: title})">
+    <meta charset="UTF-8">
+    <title>Agregar Producto | Base de datos Ferretería</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $("#expdatecbox").click(function () {
+                if($(this).is(":checked")) {
+                    $("#expirationdate")
+                        .removeAttr("disabled")
+                        .focus();
+                } else {
+                    $("#expirationdate").attr("disabled", "disabled");
+                }
+            });
+            
+            $("#product_price").onkeydown(function () {
+                if(!(($(this).keyCode > 95 && $(this).keyCode < 106)
+                    || ($(this).keyCode > 47 && $(this).keyCode < 58)
+                    || $(this).keyCode === 8)) {
+                    return false;
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<div th:replace="_fragments/pageforms_fragment :: forms_structure"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2 mb-3">
+            <div th:if="${param.error}">
+                <div class="alert alert-danger">Hubo un problema a la hora de procesar la solicitud</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-center">Agregar Nuevo Producto</h3>
+                </div>
+                <div class="card-body">
+                    <h5 class="text-start text-decoration-underline">Datos del Producto</h5>
+
+                    <br/>
+                    <form method="post" th:action="@{/insert_product}" class="form-horizontal" role="form">
+                        <div class="form-floating mb-3">
+                            <input type="text" id="product_name" name="product_name"
+                                   class="form-control" placeholder="Nombre Producto"/>
+                            <label for="product_name" class="control-label">Nombre del producto </label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="text" id="product_price" name="product_price"
+                                   class="form-control" placeholder="Precio Producto" min="0"/>
+                            <label for="product_price" class="control-label">Precio del producto </label>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="form-check form-switch mt-4">
+                                <input type="checkbox" id="expdatecbox" class="form-check-input">
+                                <label for="expdatecbox" class="form-check-label">Fecha de vencimiento</label>
+                            </div>
+                            <div class="form-floating p-3">
+                                <label for="expirationdate"></label>
+                                <input type="date" id="expirationdate" class="form-control" disabled="disabled">
+
+                            </div>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="number" id="product_amount" name="product_amount"
+                                   class="form-control" placeholder="Cantidad/unidades" min="0"/>
+                            <label for="product_amount" class="control-label">Cantidad/unidades del producto</label>
+                        </div>
+
+                        <!-- TODO: change this for the array of available jobs within the database -->
+                        <div class="mb-3">
+                            <select class="form-select" aria-label="Opciones de categoría">
+                                <option selected>Seleccione la categoría</option>
+                                <option value="1">Categoría 1</option>
+                                <option value="2">Categoría 2</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
