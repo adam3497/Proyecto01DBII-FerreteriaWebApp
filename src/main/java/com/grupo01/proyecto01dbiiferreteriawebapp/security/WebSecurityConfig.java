@@ -19,13 +19,13 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class WebSecurityConfig {
 
-    @Autowired
+   /* @Autowired
     private UserDetailsService userDetailsService;
 
     @Bean
     public static PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }
+    }*/
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         /*http
@@ -40,13 +40,13 @@ public class WebSecurityConfig {
         http.csrf().disable()
                 .authorizeHttpRequests()
                 .requestMatchers("/home").permitAll()
-                .requestMatchers("/admin_home/**", "/add_product",
-                        "/add_employee", "/add_category", "/add_job",
+                .requestMatchers("/admin_home/**", "/insert/insert_product",
+                        "/insert/insert_category", "/insert/insert_job",
                         "/edit_product", "/edit_category", "/edit_employee",
                         "/edit_job", "/edit_customer", "/delete_product",
                         "/delete_category", "/delete_employee", "/delete_customer",
                         "delete_job").hasRole("ADMIN")
-                .anyRequest().hasRole("STAFF")
+                .anyRequest().permitAll()
                 .and()
                 .formLogin(
                         form -> form
@@ -62,11 +62,11 @@ public class WebSecurityConfig {
         return http.build();
     }
 
-    @Autowired
+    /*@Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .userDetailsService(userDetailsService)
                 .passwordEncoder(passwordEncoder());
-    }
+    }*/
 
 }

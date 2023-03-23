@@ -38,58 +38,61 @@
           <h5 class="text-start text-decoration-underline">Datos del Cliente</h5>
 
           <br/>
-          <form method="post" th:action="@{/insert_client}" class="form-horizontal" role="form">
+          <form method="post" th:action="@{/insert_client}" th:object="${customer}"
+                class="form-horizontal" role="form">
             <div class="form-floating mb-3">
-              <input type="number" id="cedula" name="cedula" class="form-control" placeholder="Cédula"/>
+              <input type="number" id="cedula" name="cedula" th:field="*{cedula}"
+                     class="form-control" placeholder="Cédula"/>
               <label for="cedula" class="control-label">Cédula cliente </label>
             </div>
 
             <div class="input-group mb-3">
               <div class="form-floating ">
-                <input type="text" id="client_name" name="client_name"
+                <input type="text" id="client_name" name="client_name" th:field="*{name}"
                        class="form-control" placeholder="Nombre"/>
                 <label for="client_name" class="control-label">Nombre </label>
               </div>
               <div class="form-floating">
-                <input type="text" id="client_lastname" name="client_lastname"
+                <input type="text" id="client_lastname" name="client_lastname" th:field="*{lastName}"
                        class="form-control" placeholder="Apellidos"/>
                 <label for="client_lastname" class="control-label">Apellidos </label>
               </div>
             </div>
 
             <div class="form-floating mb-3">
-              <input type="number" id="phonenumber" name="phonenumber"
+              <input type="number" id="phonenumber" name="phonenumber" th:field="*{phoneNumber}"
                      class="form-control" placeholder="Número celular"/>
               <label for="phonenumber" class="control-label">Número celular</label>
             </div>
 
             <div class="form-floating mb-3">
-              <input type="email" id="email" name="email"
+              <input type="email" id="email" name="email" th:field="*{email}"
                      class="form-control" placeholder="Correo electrónico"/>
               <label for="email" class="control-label">Correo electrónico</label>
             </div>
 
             <div class="row g-3 mb-3">
               <div class="form-floating col-12">
-                <input type="text" class="form-control" id="client_address" name="client_address"
-                       placeholder="Dirección 1">
+                <input type="text" id="client_address" th:field="*{addressOne}"
+                       name="client_address" class="form-control" placeholder="Dirección 1">
                 <label for="client_address" class="form-label">Dirección 1</label>
               </div>
 
               <div class="form-floating col-12">
-                <input type="text" class="form-control" id="client_address_2" name="client_address_2"
-                       placeholder="Dirección 2">
+                <input type="text" id="client_address_2" th:field="*{addressTwo}"
+                       name="client_address_2" class="form-control" placeholder="Dirección 2">
                 <label for="client_address_2" class="form-label">Dirección 2</label>
               </div>
 
               <div class="form-floating col-md-6">
-                <input type="text" class="form-control" id="client_city" name="client_city" placeholder="Cantón">
+                <input type="text" id="client_city" th:field="*{city}"
+                       name="client_city" class="form-control" placeholder="Cantón">
                 <label for="client_city" class="form-label">Cantón</label>
               </div>
 
               <div class="col-md-4">
-                <select id="client_province" class="form-select mt-sm-2">
-                  <option selected>Provincia...</option>
+                <select id="client_province" class="form-select mt-sm-2" th:field="*{province}">
+                  <option value="0" selected>Provincia...</option>
                   <option value="1">San José</option>
                   <option value="2">Alajuela</option>
                   <option value="3">Cartago</option>
@@ -102,8 +105,8 @@
               </div>
 
               <div class="form-floating col-3">
-                <input type="number" class="form-control" id="client_zipcode" name="client_zipcode"
-                       placeholder="Código Postal">
+                <input type="number" id="client_zipcode" th:field="*{zipcode}"
+                       name="client_zipcode" class="form-control" placeholder="Código Postal">
                 <label for="client_zipcode" class="form-label">Código Postal</label>
               </div>
             </div>

@@ -10,5 +10,5 @@ import java.util.List;
  */
 public interface JobRepository extends CrudRepository<JobEntity, Long> {
     JobEntity findById(long id);
-    List<JobEntity> findByName(String name);
+    JobEntity findByName(String name);
 }

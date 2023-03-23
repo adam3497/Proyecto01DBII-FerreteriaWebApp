@@ -38,43 +38,45 @@
                         <h5 class="text-start text-decoration-underline">Datos del Empleado</h5>
 
                         <br/>
-                        <form method="post" th:action="@{/insert_employee}" class="form-horizontal" role="form">
+                        <form method="post" th:action="@{/insert/insert_employee}" th:object="${employee}"
+                              class="form-horizontal" role="form">
                             <div class="form-floating mb-3">
-                                <input type="number" id="cedula" name="cedula" class="form-control" placeholder="Cédula"/>
+                                <input type="number" id="cedula" name="cedula"
+                                       class="form-control" placeholder="Cédula" th:field="*{cedula}"/>
                                 <label for="cedula" class="control-label">Cédula empleado </label>
                             </div>
 
                             <div class="input-group mb-3">
                                 <div class="form-floating ">
                                     <input type="text" id="employee_name" name="employee_name"
-                                           class="form-control" placeholder="Nombre"/>
+                                           class="form-control" placeholder="Nombre" th:field="*{name}"/>
                                     <label for="employee_name" class="control-label">Nombre </label>
                                 </div>
                                 <div class="form-floating">
                                     <input type="text" id="employee_lastname" name="employee_lastname"
-                                           class="form-control" placeholder="Apellidos"/>
+                                           class="form-control" placeholder="Apellidos" th:field="*{lastName}"/>
                                     <label for="employee_lastname" class="control-label">Apellidos </label>
                                 </div>
                             </div>
 
                             <div class="form-floating mb-3">
                                 <input type="number" id="phonenumber" name="phonenumber"
-                                       class="form-control" placeholder="Número celular"/>
+                                       class="form-control" placeholder="Número celular" th:field="*{phoneNumber}"/>
                                 <label for="phonenumber" class="control-label">Número celular</label>
                             </div>
 
                             <div class="form-floating mb-3">
                                 <input type="email" id="email" name="email"
-                                       class="form-control" placeholder="Correo electrónico"/>
+                                       class="form-control" placeholder="Correo electrónico" th:field="*{email}"/>
                                 <label for="email" class="control-label">Correo electrónico</label>
                             </div>
 
                             <!-- TODO: change this for the array of available jobs within the database -->
                             <div class="mb-3">
-                                <select class="form-select" aria-label="Opciones del puesto">
-                                    <option selected>Seleccione el puesto</option>
-                                    <option value="1">Puesto 1</option>
-                                    <option value="2">Puesto 2</option>
+                                <select class="form-select" aria-label="Opciones del puesto" th:field="*{jobName}">
+                                    <option value="0" selected>Seleccione el puesto</option>
+                                    <option th:each="job : ${jobs}"
+                                            th:value="${job.name}" th:text="${job.name}"></option>
                                 </select>
                             </div>
 

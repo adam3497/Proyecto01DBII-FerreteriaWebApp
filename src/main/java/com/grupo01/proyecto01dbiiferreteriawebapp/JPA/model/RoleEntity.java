@@ -17,7 +17,7 @@ public class RoleEntity implements Serializable {
     @Column(name = "role_name", unique = true, nullable = false)
     private String roleName;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "roles_webapp")
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "roles")
     private List<UserEntity> users;
 
     public RoleEntity() {
