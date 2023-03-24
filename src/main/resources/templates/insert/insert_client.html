@@ -29,6 +29,9 @@
       <div th:if="${param.error}">
         <div class="alert alert-danger">Hubo un problema a la hora de procesar la solicitud</div>
       </div>
+      <div th:if="${param.success}">
+        <div class="alert alert-info">El cliente ha sido agregado a la base de datos</div>
+      </div>
 
       <div class="card">
         <div class="card-header">
@@ -38,7 +41,7 @@
           <h5 class="text-start text-decoration-underline">Datos del Cliente</h5>
 
           <br/>
-          <form method="post" th:action="@{/insert_client}" th:object="${customer}"
+          <form method="post" th:action="@{/insert/insert_client/save}" th:object="${customer}"
                 class="form-horizontal" role="form">
             <div class="form-floating mb-3">
               <input type="number" id="cedula" name="cedula" th:field="*{cedula}"

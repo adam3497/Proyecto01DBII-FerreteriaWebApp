@@ -10,7 +10,7 @@ import java.util.List;
  * This interface is for the queries related to product table
  */
 public interface ProductRepository extends CrudRepository<ProductEntity, Long> {
-    List<ProductEntity> findByName(String name);
+    ProductEntity findByName(String name);
     List<ProductEntity> findByPrice(long price);
     ProductEntity findById(long id);
     List<ProductEntity> findByPriceLessThanEqual(long price);

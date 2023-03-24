@@ -36,16 +36,18 @@ public class WebSecurityConfig {
                 .formLogin((form) -> form
                         .loginPage("/login")
                         .permitAll()
-                ).logout(LogoutConfigurer::permitAll);*/
-        http.csrf().disable()
-                .authorizeHttpRequests()
-                .requestMatchers("/home").permitAll()
-                .requestMatchers("/admin_home/**", "/insert/insert_product",
+                ).logout(LogoutConfigurer::permitAll);
+                "/insert/insert_product",
                         "/insert/insert_category", "/insert/insert_job",
                         "/edit_product", "/edit_category", "/edit_employee",
                         "/edit_job", "/edit_customer", "/delete_product",
                         "/delete_category", "/delete_employee", "/delete_customer",
-                        "delete_job").hasRole("ADMIN")
+                        "delete_job"
+                */
+        http.csrf().disable()
+                .authorizeHttpRequests()
+                .requestMatchers("/home").permitAll()
+                .requestMatchers("/admin_home/**").hasRole("ADMIN")
                 .anyRequest().permitAll()
                 .and()
                 .formLogin(

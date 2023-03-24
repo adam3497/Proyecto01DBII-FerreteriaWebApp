@@ -17,6 +17,10 @@
         <div class="alert alert-danger">Hubo un problema a la hora de procesar la solicitud</div>
       </div>
 
+      <div th:if="${param.success}">
+        <div class="alert alert-info">La categoría ha sido agregada a la base de datos</div>
+      </div>
+
       <div class="card">
         <div class="card-header">
           <h3 class="text-center">Agregar Nueva Categoría</h3>
@@ -25,9 +29,10 @@
           <h5 class="text-start text-decoration-underline">Datos de la Categoría</h5>
 
           <br/>
-          <form method="post" th:action="@{/insert_category}" class="form-horizontal" role="form">
+          <form method="post" th:action="@{/insert/insert_category/save}" th:object="${category}"
+                class="form-horizontal" role="form">
             <div class="form-floating mb-3">
-              <input type="text" id="category_name" name="category_name"
+              <input type="text" id="category_name" name="category_name" th:field="*{name}"
                      class="form-control" placeholder="Nombre categoría"/>
               <label for="category_name" class="control-label">Nombre categoría </label>
             </div>

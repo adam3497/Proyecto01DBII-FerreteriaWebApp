@@ -29,6 +29,9 @@
       <div th:if="${param.error}">
         <div class="alert alert-danger">Hubo un problema a la hora de procesar la solicitud</div>
       </div>
+      <div th:if="${param.success}">
+        <div class="alert alert-info">El puesto ha sido agregado a la base de datos</div>
+      </div>
 
       <div class="card">
         <div class="card-header">
@@ -38,16 +41,17 @@
           <h5 class="text-start text-decoration-underline">Datos del Puesto</h5>
 
           <br/>
-          <form method="post" th:action="@{/insert_job}" class="form-horizontal" role="form">
+          <form method="post" th:action="@{/insert/insert_job/save}" th:object="${job}"
+                class="form-horizontal" role="form">
             <div class="form-floating mb-3">
-              <input type="text" id="job_name" name="job_name"
+              <input type="text" id="job_name" name="job_name" th:field="*{name}"
                      class="form-control" placeholder="Nombre puesto"/>
               <label for="job_name" class="control-label">Nombre puesto </label>
             </div>
 
             <div class="form-floating mb-3">
-              <input type="text" id="job_description" name="job_description"
-                     class="form-control" placeholder="Descripción puesto"/>
+              <input type="text" id="job_description" th:field="*{jobDescription}"
+                     name="job_description" class="form-control" placeholder="Descripción puesto"/>
               <label for="job_description" class="control-label">Descripción del puesto </label>
             </div>
 
