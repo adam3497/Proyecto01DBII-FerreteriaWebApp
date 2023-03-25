@@ -14,6 +14,12 @@ public class EmployeeModel extends PersonModel implements Serializable{
         this.jobName = jobName;
     }
 
+    @Override
+    public String toString() {
+        return super.toString().replace("}",
+                "jobName='" + jobName + '\'' + '}');
+    }
+
     public String getJobName() {
         return jobName;
     }

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Empleado | Base de datos Ferretería</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
+  </style>
+</head>
+<body>
+<div th:replace="_fragments/pageforms_fragment :: forms_structure"></div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2 mb-3">
+
+      <div th:if="${param.error}">
+        <div class="alert alert-danger">
+          <p th:text="${param.errorMsg}"></p>
+        </div>
+      </div>
+      <div th:if="${param.success}">
+        <div class="alert alert-info">
+          <p th:text="${param.successMsg}"></p>
+        </div>
+      </div>
+
+      <div class="card mb-3" id="cardSearchEmployee">
+        <div class="card-header">
+          <h3 class="text-center">Actualizar el empleado</h3>
+        </div>
+
+        <div class="card-body">
+          <form method="post" th:action="@{/edit/edit_employee_form/update}" th:object="${employee}"
+                class="form-horizontal" role="form">
+
+            <div class="form-floating mb-3" hidden="hidden">
+              <input type="number" id="cedula" name="cedula"
+                     class="form-control" placeholder="Cédula" th:text="${param.cedula}" th:field="*{cedula}"/>
+              <label for="cedula" class="control-label">Cédula empleado </label>
+            </div>
+
+            <div class="input-group mb-3">
+              <div class="form-floating ">
+                <input type="text" id="employee_name" name="employee_name"
+                       class="form-control" placeholder="Nombre" th:field="*{name}"/>
+                <label for="employee_name" class="control-label">Nombre </label>
+              </div>
+              <div class="form-floating">
+                <input type="text" id="employee_lastname" name="employee_lastname"
+                       class="form-control" placeholder="Apellidos" th:field="*{lastName}"/>
+                <label for="employee_lastname" class="control-label">Apellidos </label>
+              </div>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input type="number" id="phonenumber" name="phonenumber"
+                     class="form-control" placeholder="Número celular" th:field="*{phoneNumber}"/>
+              <label for="phonenumber" class="control-label">Número celular</label>
+            </div>
+
+            <div class="input-group mb-3 pt-2">
+              <div class="form-floating pe-4">
+                <input type="text" id="employee_currentJob" name="employee_currentJob" th:placeholder="*{jobName}"
+                       class="form-control" disabled>
+                <label for="employee_currentJob" class="control-label">Trabajo actual</label>
+              </div>
+              <div class="mb-3 mt-2">
+                <select class="form-select" aria-label="Opciones del puesto" th:field="*{jobName}">
+                  <option value="0" selected>Seleccione el puesto</option>
+                  <option th:each="job : ${jobs}"
+                          th:value="${job.name}" th:text="${job.name}"></option>
+                </select>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <button type="submit" class="btn btn-primary">Actualizar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

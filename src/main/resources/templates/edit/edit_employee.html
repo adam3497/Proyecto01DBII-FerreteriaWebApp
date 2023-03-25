@@ -2,9 +2,136 @@
 <html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Editar Empleado | Base de datos Ferretería</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <!--<script>
+        $(function() {
+            let nameCbox = $("#nameCbox");
+            let cedulaCbox = $("#cedulaCbox");
+            let cardFormSearch = $("#cardSearchEmployee");
+            let cardMethodType = $("#cardMethodType");
+            let btnNext = $("#btnMethodType");
+            let divCedulaInput = $("#divCedulaInput");
+            let divNameInput = $("#divNameInput");
+
+            cardFormSearch.hide();
+
+            btnNext.click(function() {
+                cardMethodType.hide();
+                cardFormSearch.show();
+
+                if(nameCbox.is(":checked")) {
+                    divCedulaInput.hide();
+                    divNameInput.show();
+                }
+                if(cedulaCbox.is(":checked")) {
+                    divCedulaInput.show();
+                    divNameInput.hide();
+                }
+            });
+
+            cedulaCbox.click(function() {
+                if($(this).is(":checked")) {
+                    if(nameCbox.is(":checked")) {
+                        nameCbox.prop("checked", false);
+                    }
+                    btnNext
+                        .removeAttr("disabled")
+                        .focus();
+                } else {
+                    btnNext.attr("disabled", "disabled");
+                }
+            });
+
+            nameCbox.click(function() {
+                if($(this).is(":checked")) {
+                    if(cedulaCbox.is(":checked")) {
+                        cedulaCbox.prop("checked", false);
+                    }
+                    btnNext
+                        .removeAttr("disabled")
+                        .focus();
+                } else {
+                    btnNext.attr("disabled", "disabled");
+                }
+            });
+        });
+    </script>-->
+    <style>
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
 </head>
 <body>
+    <div th:replace="_fragments/pageforms_fragment :: forms_structure"></div>
 
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2 mb-3">
+
+                <div th:if="${param.error}">
+                    <div class="alert alert-danger">
+                        <span th:text="*{errorMsg}"></span>
+                    </div>
+                </div>
+                <div th:if="${param.success}">
+                    <div class="alert alert-info" th:text="*{successMsg}"></div>
+                </div>
+
+                <!--<div class="card mb-3" id="cardMethodType">
+                    <div class="card-header">
+                        <h3 class="text-center">Eliga el método para editar el empleado</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="input-group mb-3">
+                            <div class="form-check form-switch mt-4 me-3">
+                                <input type="checkbox" id="cedulaCbox" class="form-check-input">
+                                <label for="cedulaCbox" class="form-check-label">Usar cédula</label>
+                            </div>
+                            <div class="form-check form-switch mt-4">
+                                <input type="checkbox" id="nameCbox" class="form-check-input">
+                                <label for="nameCbox" class="form-check-label">Usar nombre</label>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-outline-primary"
+                                id="btnMethodType" disabled="disabled">Siguiente</button>
+                    </div>
+                </div>-->
+
+                <div class="card mb-3" id="cardSearchEmployee">
+                    <div class="card-header">
+                        <h3 class="text-center">Buscar empleado</h3>
+                    </div>
+
+                    <div class="card-body">
+                        <form method="post" th:action="@{/edit/edit_employee/search}" th:object="${employee}"
+                              class="form-horizontal" role="form">
+                            <div class="form-floating mb-3" id="divCedulaInput">
+                                <input type="number" id="employee_cedula" name="cedula"
+                                       class="form-control" placeholder="Cédula" th:field="*{cedula}"/>
+                                <label for="employee_cedula" class="control-label">Cédula empleado </label>
+                            </div>
+
+                            <div class="mb-3">
+                                <button type="submit" class="btn btn-primary">Buscar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

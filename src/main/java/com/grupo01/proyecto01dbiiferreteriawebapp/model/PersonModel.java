@@ -1,7 +1,7 @@
 package com.grupo01.proyecto01dbiiferreteriawebapp.model;
 
 public class PersonModel {
-    private long cedula, phoneNumber;
+    private long id, cedula, phoneNumber;
     private String name, lastName, email;
 
     public PersonModel () {}
@@ -12,6 +12,26 @@ public class PersonModel {
         this.name = name;
         this.lastName = lastName;
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "PersonModel{" +
+                "id=" + id +
+                ", cedula=" + cedula +
+                ", phoneNumber=" + phoneNumber +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public long getCedula() {
