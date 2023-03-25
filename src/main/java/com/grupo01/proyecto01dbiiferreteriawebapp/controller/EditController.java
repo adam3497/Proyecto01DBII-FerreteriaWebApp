@@ -1,21 +1,23 @@
 package com.grupo01.proyecto01dbiiferreteriawebapp.controller;
 
+import com.grupo01.proyecto01dbiiferreteriawebapp.JPA.model.CategoryEntity;
 import com.grupo01.proyecto01dbiiferreteriawebapp.JPA.model.EmployeeEntity;
 import com.grupo01.proyecto01dbiiferreteriawebapp.JPA.model.JobEntity;
+import com.grupo01.proyecto01dbiiferreteriawebapp.JPA.model.ProductEntity;
 import com.grupo01.proyecto01dbiiferreteriawebapp.JPA.repository.*;
 import com.grupo01.proyecto01dbiiferreteriawebapp.model.EmployeeModel;
+import com.grupo01.proyecto01dbiiferreteriawebapp.model.ProductModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @RestController
 public class EditController {
@@ -102,6 +104,30 @@ public class EditController {
             modelAndView.setViewName("redirect:/edit/edit_employee_form?error");
         }
         return modelAndView;
+    }
+
+    @GetMapping("/edit/edit_product")
+    public ModelAndView updateProductList() {
+        ModelAndView mv = new ModelAndView();
+        List<ProductEntity> productsDB = (List<ProductEntity>) productRepository.findAll();
+        List<ProductModel> products = convertProductsDB(productsDB);
+        mv.addObject("products", products);
+        return mv;
+    }
+
+    private List<ProductModel> convertProductsDB(List<ProductEntity> productsDB) {
+        List<ProductModel> products = new ArrayList<>();
+        for(ProductEntity product : productsDB) {
+            ProductModel productTemp = new ProductModel();
+            productTemp.setName(product.getName());
+            productTemp.setPrice(product.getPrice());
+            productTemp.setAmount(product.getAmount());
+            productTemp.setExpirationDate(product.getExpirationDate());
+            CategoryEntity category = categoryRepository.findById(product.getCategoryID());
+            productTemp.setCategoryName(category.getName());
+            products.add(productTemp);
+        }
+        return products;
     }
 
 }

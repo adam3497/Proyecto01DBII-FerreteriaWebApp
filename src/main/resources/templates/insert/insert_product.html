@@ -31,14 +31,6 @@
                     $("#expirationdate").attr("disabled", "disabled");
                 }
             });
-            
-            $("#product_price").keydown(function () {
-                if(!(($(this).keyCode > 95 && $(this).keyCode < 106)
-                    || ($(this).keyCode > 47 && $(this).keyCode < 58)
-                    || $(this).keyCode === 8)) {
-                    return false;
-                }
-            });
         });
     </script>
 </head>
@@ -72,7 +64,7 @@
                         </div>
 
                         <div class="form-floating mb-3">
-                            <input type="text" id="product_price" name="product_price" th:field="*{field}"
+                            <input type="text" id="product_price" name="product_price" th:field="*{price}"
                                    class="form-control" placeholder="Precio Producto" min="0"/>
                             <label for="product_price" class="control-label">Precio del producto </label>
                         </div>
